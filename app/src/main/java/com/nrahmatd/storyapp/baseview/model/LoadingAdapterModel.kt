@@ -1,7 +1,7 @@
-package com.sagara.klipz.baseview.model
+package com.nrahmatd.storyapp.baseview.model
 
-import com.sagara.klipz.utils.Constant
+import com.sagara.klipz.baseview.model.BaseAdapterModel
 
 class LoadingAdapterModel : BaseAdapterModel {
-    override fun getType(): Int = Constant.TYPE_LOADING
+    override fun getType(): Int = 0
 }

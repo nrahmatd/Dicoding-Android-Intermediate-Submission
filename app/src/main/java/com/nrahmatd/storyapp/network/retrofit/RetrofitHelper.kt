@@ -1,11 +1,10 @@
-package com.sagara.klipz.network.retrofit
+package com.nrahmatd.storyapp.network.retrofit
 
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.google.gson.GsonBuilder
-import com.sagara.klipz.BuildConfig
-import com.sagara.klipz.GlobalApp
-import com.sagara.klipz.network.interceptor.NetworkConnectionInterceptor
-import com.sagara.klipz.network.interceptor.TokenAuthenticator
+import com.nrahmatd.storyapp.BuildConfig
+import com.nrahmatd.storyapp.app.GlobalApp
+import com.nrahmatd.storyapp.network.interceptor.NetworkConnectionInterceptor
 import java.util.concurrent.TimeUnit
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
@@ -21,17 +20,12 @@ object RetrofitHelper {
 
         val httpClient = OkHttpClient.Builder()
         httpClient.dispatcher(dispatcher)
-        if (!refreshTokenStatus) {
-            httpClient.addInterceptor(interceptor)
-            httpClient.authenticator(TokenAuthenticator(baseUrl))
-        }
-
         if (BuildConfig.DEBUG) {
             httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             httpClient.addInterceptor(ChuckerInterceptor(GlobalApp.getAppContext()))
         }
 
-        /*add timeout*/
+        /** Add Timeout */
         httpClient.callTimeout(120, TimeUnit.SECONDS)
 
         return Retrofit.Builder()

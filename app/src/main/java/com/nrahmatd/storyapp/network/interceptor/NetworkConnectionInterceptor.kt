@@ -1,10 +1,10 @@
-package com.sagara.klipz.network.interceptor
+package com.nrahmatd.storyapp.network.interceptor
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.sagara.klipz.network.exception.NoInternetException
+import com.nrahmatd.storyapp.network.exception.NoInternetException
 import okhttp3.Interceptor
 import okhttp3.Response
 

@@ -1,10 +1,10 @@
-package com.sagara.klipz.baseview
+package com.nrahmatd.storyapp.baseview
 
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.nrahmatd.storyapp.baseview.model.LoadingAdapterModel
 import com.sagara.klipz.baseview.model.BaseAdapterModel
-import com.sagara.klipz.baseview.model.LoadingAdapterModel
 
 abstract class BaseRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     protected var data: MutableList<BaseAdapterModel> = ArrayList()

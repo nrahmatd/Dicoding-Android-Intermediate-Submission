@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stories</string>
+    <string name="welcome_back">Selamat Datang</string>
+    <string name="please_log_in">Silakan Masuk</string>
+    <string name="the_email_not_yet_valid">Email belum valid.</string>
+    <string name="the_email_you_entered_is_incorrect">Email yang Anda masukkan salah.</string>
+    <string name="password">Sandi</string>
+    <string name="the_password_you_entered_is_incorrect">Sandi yang kamu masukkan salah.</string>
+    <string name="login">Masuk</string>
+    <string name="don_t_have_an_account">Belum punya akun?</string>
+    <string name="sign_up">Daftar</string>
+    <string name="register">Daftar</string>
+    <string name="name">Nama</string>
+    <string name="use_3_characters_or_more_for_your_name">Nama minimal 3 karakter</string>
+    <string name="please_sign_up_your_account">Buat Akun Anda</string>
+    <string name="the_name_not_available">Nama %1$s tidak tersedia</string>
+    <string name="email_address">Email</string>
+    <string name="email_account_not_registered">Akun email tidak terdaftar</string>
+    <string name="this_email_account_already_exists">Akun email ini sudah ada</string>
+    <string name="email_must_be_valid">Email harus valid</string>
+    <string name="invalid_password">Kata sandi tidak valid</string>
+    <string name="use_6_characters_or_more_for_your_password">Gunakan 6 karakter atau lebih untuk sandi Anda</string>
+    <string name="success_register">Daftar Berhasil</string>
+    <string name="home">Beranda</string>
+    <string name="setting">Pengaturan</string>
+    <string name="language_setting">Pengaturan Bahasa</string>
+    <string name="logout">Keluar</string>
+    <string name="are_you_sure_you_want_to_leave">Apakah anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="share">Bagikan</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="write_the_description">Tulis Deskripsi</string>
+    <string name="successfully_add_stories">Berhasil menambahkan stori</string>
+</resources>

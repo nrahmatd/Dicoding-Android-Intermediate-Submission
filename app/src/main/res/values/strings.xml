@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">Story App</string>
+    <string name="app_name">Stories</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="please_log_in">Please Log in</string>
+    <string name="the_email_not_yet_valid">Email not yet valid.</string>
+    <string name="the_email_you_entered_is_incorrect">The email you entered is incorrect.</string>
+    <string name="password">Password</string>
+    <string name="the_password_you_entered_is_incorrect">The password you entered is incorrect.</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="use_3_characters_or_more_for_your_name">Name of at least 3 characters</string>
+    <string name="please_sign_up_your_account">Create your Account</string>
+    <string name="the_name_not_available">The name %1$s is not available</string>
+    <string name="email_address">Email</string>
+    <string name="this_email_account_already_exists">This email account already exists</string>
+    <string name="email_account_not_registered">Email account not registered</string>
+    <string name="email_must_be_valid">Email must be valid</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="use_6_characters_or_more_for_your_password">Use 6 characters or more for your password</string>
+    <string name="success_register">Register Successfully</string>
+    <string name="home">Home</string>
+    <string name="setting">Setting</string>
+    <string name="language_setting">Language Setting</string>
+    <string name="logout">Logout</string>
+    <string name="are_you_sure_you_want_to_leave">Are you sure you want to leave?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="share">Share</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="write_the_description">Write the Description</string>
+    <string name="successfully_add_stories">Successfully Create The Stories</string>
 </resources>

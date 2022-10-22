@@ -1,4 +1,4 @@
-package com.sagara.klipz.network.exception
+package com.nrahmatd.storyapp.network.exception
 
 import java.io.IOException
 

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".authentication.view.AuthenticationActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:elevation="@dimen/distance_0"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="@dimen/distance_32"
+                android:layout_height="@dimen/distance_32"
+                android:src="@drawable/ic_back"
+                android:layout_margin="@dimen/distance_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbar"
+        android:padding="@dimen/distance_24">
+
+        <TextView
+            android:id="@+id/tv_register_label"
+            style="@style/text.bold"
+            android:layout_marginTop="@dimen/distance_16"
+            android:text="@string/register"
+            android:textSize="@dimen/text_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            style="@style/text"
+            android:layout_marginTop="@dimen/distance_24"
+            android:text="@string/please_sign_up_your_account"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_register_label" />
+
+        <ImageView
+            android:id="@+id/iv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_username"
+            app:layout_constraintBottom_toBottomOf="@+id/et_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_username_label"
+            app:layout_constraintVertical_bias="0.30" />
+
+        <TextView
+            android:id="@+id/tv_username_label"
+            style="@style/text.bold"
+            android:layout_marginBottom="@dimen/distance_8"
+            android:text="@string/name"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toTopOf="@+id/et_name"
+            app:layout_constraintStart_toStartOf="@+id/et_name" />
+
+        <com.nrahmatd.storyapp.utils.customview.NameEditText
+            android:id="@+id/et_name"
+            style="@style/outline_box_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/distance_16"
+            android:layout_marginEnd="@dimen/distance_16"
+            android:background="@null"
+            android:textCursorDrawable="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/iv_username"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.262" />
+
+        <View
+            android:id="@+id/v_line_username"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/distance_1"
+            android:layout_marginTop="@dimen/distance_8"
+            android:background="@color/grey_very_light"
+            app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+        <TextView
+            android:id="@+id/tv_username_incorrect"
+            style="@style/text"
+            android:layout_marginTop="@dimen/distance_8"
+            android:text="@string/the_name_not_available"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_line_username" />
+
+        <ImageView
+            android:id="@+id/iv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_email"
+            app:layout_constraintBottom_toBottomOf="@+id/et_email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_email_label"
+            app:layout_constraintVertical_bias="0.30" />
+
+        <TextView
+            android:id="@+id/tv_email_label"
+            style="@style/text.bold"
+            android:layout_marginBottom="@dimen/distance_8"
+            android:text="@string/email_address"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toTopOf="@+id/et_email"
+            app:layout_constraintStart_toStartOf="@+id/et_email"
+            app:layout_constraintTop_toBottomOf="@+id/tv_username_incorrect"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <com.nrahmatd.storyapp.utils.customview.EmailEditText
+            android:id="@+id/et_email"
+            style="@style/outline_box_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/distance_16"
+            android:layout_marginTop="@dimen/distance_16"
+            android:background="@null"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_email"
+            app:layout_constraintTop_toBottomOf="@+id/tv_username_incorrect"
+            app:layout_constraintVertical_bias="0.08" />
+
+        <View
+            android:id="@+id/v_line_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/distance_1"
+            android:layout_marginTop="@dimen/distance_8"
+            android:background="@color/grey_very_light"
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+
+        <TextView
+            android:id="@+id/tv_email_incorrect"
+            style="@style/text"
+            android:layout_marginTop="@dimen/distance_8"
+            android:text="@string/this_email_account_already_exists"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_line_email" />
+
+        <ImageView
+            android:id="@+id/iv_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_lock"
+            app:layout_constraintBottom_toBottomOf="@+id/et_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_password_label"
+            app:layout_constraintVertical_bias="0.30" />
+
+        <TextView
+            android:id="@+id/tv_password_label"
+            style="@style/text.bold"
+            android:layout_marginBottom="@dimen/distance_8"
+            android:text="@string/password"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toTopOf="@+id/et_password"
+            app:layout_constraintStart_toStartOf="@+id/et_password"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email_incorrect"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <com.nrahmatd.storyapp.utils.customview.PasswordEditText
+            android:id="@+id/et_password"
+            style="@style/outline_box_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/distance_16"
+            android:layout_marginTop="@dimen/distance_16"
+            android:layout_marginEnd="@dimen/distance_16"
+            android:background="@null"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_show_password"
+            app:layout_constraintStart_toEndOf="@+id/iv_password"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email_incorrect"
+            app:layout_constraintVertical_bias="0.11" />
+
+        <ImageView
+            android:id="@+id/iv_show_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_show_password_inactive"
+            app:layout_constraintBottom_toBottomOf="@+id/et_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_password_label" />
+
+        <View
+            android:id="@+id/v_line_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/distance_1"
+            android:layout_marginTop="@dimen/distance_8"
+            android:background="@color/grey_very_light"
+            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+        <TextView
+            android:id="@+id/tv_password_incorrect"
+            style="@style/text"
+            android:layout_marginTop="@dimen/distance_8"
+            android:text="@string/use_6_characters_or_more_for_your_password"
+            android:textColor="@color/red"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_line_password" />
+
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/button.grey"
+            android:layout_width="match_parent"
+            android:text="@string/register"
+            android:enabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit_loading"
+            style="@style/SpinKitView.Small.ThreeBounce"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/distance_24"
+            android:alpha="0.8"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/color_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_register" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
