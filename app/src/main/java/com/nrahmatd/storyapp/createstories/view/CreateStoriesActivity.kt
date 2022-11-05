@@ -1,8 +1,11 @@
 package com.nrahmatd.storyapp.createstories.view
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -10,12 +13,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.nrahmatd.storyapp.R
 import com.nrahmatd.storyapp.baseview.BaseActivity
 import com.nrahmatd.storyapp.createstories.viewmodel.CreateStoriesViewModel
@@ -27,6 +33,7 @@ import com.nrahmatd.storyapp.utils.MediaUtility
 import com.nrahmatd.storyapp.utils.MediaUtility.reduceFileImage
 import com.nrahmatd.storyapp.utils.MediaUtility.uriToFile
 import com.nrahmatd.storyapp.utils.ResponseHelper
+import com.nrahmatd.storyapp.utils.log
 import com.nrahmatd.storyapp.utils.sendNotify
 import com.nrahmatd.storyapp.utils.setRoundedOnImageView
 import com.nrahmatd.storyapp.utils.toast
@@ -47,7 +54,9 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
      */
     private val isValidationForm = arrayOf(false, false)
     private lateinit var currentPhotoPath: String
+    private var currentLocation: Location? = null
     private var getFile: File? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private lateinit var createStoriesViewModel: CreateStoriesViewModel
 
@@ -68,6 +77,7 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
     override fun statusBarColor(): Int = 0
 
     private fun initView() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         binding.apply {
             btnUploadImage.setImageDrawable(
                 ContextCompat.getDrawable(
@@ -99,6 +109,12 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
         binding.apply {
             btnUploadImage.setOnClickListener {
                 showBottomDialogChoose()
+            }
+            switchShareLocation.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked)
+                    getLastLocation()
+                else
+                    currentLocation = null
             }
             btnSave.setOnClickListener {
                 loading()
@@ -218,6 +234,57 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
         launcherIntentGallery.launch(chooser)
     }
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        when {
+            permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
+                getLastLocation()
+            }
+            else -> {
+                toast(this, getString(R.string.permission_denied))
+                binding.switchShareLocation.isChecked = false
+            }
+        }
+    }
+
+    /**
+     * Get current Gallery
+     */
+    private fun getLastLocation() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            // Location permission granted
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    this.currentLocation = location
+                    log(
+                        "Current Location",
+                        "getLastLocation: ${location.latitude}, ${location.longitude}"
+                    )
+                } else {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.please_activate_location_message),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    binding.switchShareLocation.isChecked = false
+                }
+            }
+        } else {
+            // Location permission denied
+            requestPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
+        }
+    }
+
     private fun createStories() {
         binding.apply {
             val file = reduceFileImage(getFile as File)
@@ -229,13 +296,17 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
             )
             val description =
                 etDescription.text.toString().toRequestBody("text/plain".toMediaType())
+            val latitude =
+                currentLocation?.latitude.toString().toRequestBody("text/plain".toMediaType())
+            val longitude =
+                currentLocation?.longitude.toString().toRequestBody("text/plain".toMediaType())
 
             createStoriesViewModel.createStories(
                 CREATE_STORIES,
                 imageMultipart,
                 description,
-                null,
-                null
+                latitude,
+                longitude
             )
         }
     }

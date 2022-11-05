@@ -33,4 +33,8 @@
     <string name="gallery">Gallery</string>
     <string name="write_the_description">Write the Description</string>
     <string name="successfully_add_stories">Successfully Create The Stories</string>
+    <string name="please_activate_location_message">Please activate your location services</string>
+    <string name="share_my_location">Share my location</string>
+    <string name="permission_denied">Permission denied</string>
+    <string name="location">Location</string>
 </resources>

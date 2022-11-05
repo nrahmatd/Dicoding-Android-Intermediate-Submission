@@ -11,8 +11,7 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_loading">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -62,6 +61,21 @@
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/share_my_location"
+                android:paddingTop="@dimen/distance_16"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/et_description" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_share_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/et_description"
+                app:layout_constraintTop_toBottomOf="@+id/et_description" />
+
             <Button
                 android:id="@+id/btn_save"
                 style="@style/button.grey"
@@ -73,7 +87,7 @@
                 android:layout_marginEnd="@dimen/distance_32"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_description"
+                app:layout_constraintTop_toBottomOf="@+id/switch_share_location"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <com.github.ybq.android.spinkit.SpinKitView

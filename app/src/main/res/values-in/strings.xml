@@ -34,4 +34,8 @@
     <string name="gallery">Galeri</string>
     <string name="write_the_description">Tulis Deskripsi</string>
     <string name="successfully_add_stories">Berhasil menambahkan stori</string>
+    <string name="please_activate_location_message">Tolong aktifkan layanan lokasi</string>
+    <string name="share_my_location">Bagikan lokasi saya</string>
+    <string name="permission_denied">Izin ditolak</string>
+    <string name="location">Lokasi</string>
 </resources>

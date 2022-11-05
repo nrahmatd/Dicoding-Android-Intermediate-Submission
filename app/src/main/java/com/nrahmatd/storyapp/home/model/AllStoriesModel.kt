@@ -19,9 +19,9 @@ data class AllStoriesModel(
         @SerializedName("id")
         val id: String,
         @SerializedName("lat")
-        val lat: Double,
+        val lat: Double? = null,
         @SerializedName("lon")
-        val lon: Double,
+        val lon: Double? = null,
         @SerializedName("name")
         val name: String,
         @SerializedName("photoUrl")

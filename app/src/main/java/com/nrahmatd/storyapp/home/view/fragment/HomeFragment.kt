@@ -1,5 +1,6 @@
 package com.nrahmatd.storyapp.home.view.fragment
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +10,7 @@ import com.nrahmatd.storyapp.home.adapter.HomeAdapter
 import com.nrahmatd.storyapp.home.model.AllStoriesModel
 import com.nrahmatd.storyapp.home.viewmodel.AllStoriesViewModel
 import com.nrahmatd.storyapp.home.viewmodel.AllStoriesViewModelFactory
+import com.nrahmatd.storyapp.location.view.LocationActivity
 import com.nrahmatd.storyapp.utils.GlobalVariable
 import com.nrahmatd.storyapp.utils.ResponseHelper
 import com.nrahmatd.storyapp.utils.getNotify
@@ -37,6 +39,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         getAllStories()
         getResponse()
         initNotify()
+        initOnClick()
     }
 
     private fun setupSwipeRefresh() {
@@ -77,6 +80,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         getNotify(compositeDisposable) {
             when (it.TAG) {
                 GlobalVariable.NOTIFY_STORIES -> getAllStories()
+            }
+        }
+    }
+
+    private fun initOnClick() {
+        binding.apply {
+            fabLocation.setOnClickListener {
+                startActivity(Intent(requireActivity(), LocationActivity::class.java))
             }
         }
     }
