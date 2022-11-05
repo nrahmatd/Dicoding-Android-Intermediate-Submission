@@ -28,6 +28,9 @@ class ApiRepository {
     suspend fun getAllStories() =
         apiServices.getAllStories(accessToken, null, null, 1)
 
+    suspend fun getAllStories(page: Int, size: Int) =
+        apiServices.getAllStories(accessToken, page, size, 1)
+
     suspend fun createStories(
         file: MultipartBody.Part,
         description: RequestBody,

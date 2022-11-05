@@ -7,14 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nrahmatd.storyapp.databinding.FragmentHomeBinding
 import com.nrahmatd.storyapp.home.adapter.HomeAdapter
-import com.nrahmatd.storyapp.home.model.AllStoriesModel
 import com.nrahmatd.storyapp.home.viewmodel.AllStoriesViewModel
 import com.nrahmatd.storyapp.home.viewmodel.AllStoriesViewModelFactory
 import com.nrahmatd.storyapp.location.view.LocationActivity
 import com.nrahmatd.storyapp.utils.GlobalVariable
-import com.nrahmatd.storyapp.utils.ResponseHelper
 import com.nrahmatd.storyapp.utils.getNotify
-import com.nrahmatd.storyapp.utils.toast
 import com.sagara.klipz.baseview.BaseFragment
 import io.reactivex.disposables.CompositeDisposable
 
@@ -37,7 +34,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         setupRecyclerView()
         initViewModel()
         getAllStories()
-        getResponse()
         initNotify()
         initOnClick()
     }
@@ -61,18 +57,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             ViewModelProvider(this, AllStoriesViewModelFactory())[AllStoriesViewModel::class.java]
     }
 
-    private fun getAllStories() = allStoriesViewModel.getAllStories(ALL_STORIES)
-
-    private fun getResponse() {
-        allStoriesViewModel.response.observe(this) {
-            when (it.code) {
-                ResponseHelper.ERROR -> toast(requireActivity(), it.response as String)
-                ResponseHelper.LOADING -> binding.swipeHome.isRefreshing = it.response as Boolean
-                ALL_STORIES -> {
-                    val response = it.response as AllStoriesModel
-                    homeAdapter.setDatas(response.listStory)
-                }
-            }
+    private fun getAllStories() {
+        allStoriesViewModel.responsePaging.observe(this) {
+            homeAdapter.submitData(lifecycle, it)
         }
     }
 

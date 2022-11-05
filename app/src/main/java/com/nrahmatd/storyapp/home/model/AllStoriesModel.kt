@@ -1,5 +1,7 @@
 package com.nrahmatd.storyapp.home.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import com.sagara.klipz.baseview.model.BaseAdapterModel
 
@@ -11,20 +13,22 @@ data class AllStoriesModel(
     @SerializedName("message")
     val message: String
 ) : BaseAdapterModel, java.io.Serializable {
+    @Entity(tableName = "stories")
     data class Story(
-        @SerializedName("createdAt")
+        @field:SerializedName("createdAt")
         val createdAt: String,
-        @SerializedName("description")
+        @field:SerializedName("description")
         val description: String,
-        @SerializedName("id")
+        @PrimaryKey
+        @field:SerializedName("id")
         val id: String,
-        @SerializedName("lat")
+        @field:SerializedName("lat")
         val lat: Double? = null,
-        @SerializedName("lon")
+        @field:SerializedName("lon")
         val lon: Double? = null,
-        @SerializedName("name")
+        @field:SerializedName("name")
         val name: String,
-        @SerializedName("photoUrl")
+        @field:SerializedName("photoUrl")
         val photoUrl: String
     ) : BaseAdapterModel, java.io.Serializable {
         override fun getType(): Int = 0

@@ -6,17 +6,37 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.nrahmatd.storyapp.baseview.BaseRecyclerAdapter
 import com.nrahmatd.storyapp.databinding.ItemStoriesBinding
 import com.nrahmatd.storyapp.detail.view.DetailStoriesActivity
 import com.nrahmatd.storyapp.home.model.AllStoriesModel
 import com.nrahmatd.storyapp.utils.loadImage
 import com.nrahmatd.storyapp.utils.parseDate
 
-class HomeAdapter : BaseRecyclerAdapter() {
+class HomeAdapter :
+    PagingDataAdapter<AllStoriesModel.Story, HomeAdapter.StoriesHolder>(DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<AllStoriesModel.Story>() {
+            override fun areItemsTheSame(
+                oldItem: AllStoriesModel.Story,
+                newItem: AllStoriesModel.Story
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(
+                oldItem: AllStoriesModel.Story,
+                newItem: AllStoriesModel.Story
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoriesHolder =
         StoriesHolder(
             ItemStoriesBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -25,9 +45,10 @@ class HomeAdapter : BaseRecyclerAdapter() {
             )
         )
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is StoriesHolder) {
-            holder.bind(data[position] as AllStoriesModel.Story)
+    override fun onBindViewHolder(holder: StoriesHolder, position: Int) {
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(data)
         }
     }
 
