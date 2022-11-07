@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.nrahmatd.storyapp.R
 import com.nrahmatd.storyapp.authentication.viewmodel.AuthViewModel
@@ -32,7 +32,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(),
      */
     private val isValidationForm = arrayOf(false, false, false)
     private var showPassword = false
-    private lateinit var authViewModel: AuthViewModel
+    private val authViewModel: AuthViewModel by viewModels {
+        AuthViewModelFactory(requireActivity())
+    }
 
     companion object {
         const val REGISTER = 1
@@ -43,7 +45,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(),
 
     override fun setup() {
         initView()
-        initViewModel()
+//        initViewModel()
         initOnClick()
         getResponse()
     }
@@ -95,9 +97,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(),
         }
     }
 
-    private fun initViewModel() {
-        authViewModel = ViewModelProvider(this, AuthViewModelFactory())[AuthViewModel::class.java]
-    }
+//    private fun initViewModel() {
+//        authViewModel = ViewModelProvider(this, AuthViewModelFactory())[AuthViewModel::class.java]
+//    }
 
     private fun initOnClick() {
         binding.apply {

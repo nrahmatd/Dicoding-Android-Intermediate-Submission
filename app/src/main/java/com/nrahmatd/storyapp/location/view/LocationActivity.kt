@@ -5,8 +5,9 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,7 +28,9 @@ import com.nrahmatd.storyapp.utils.toast
 
 class LocationActivity : BaseActivity<ActivityLocationBinding>() {
 
-    private lateinit var allStoriesViewModel: AllStoriesViewModel
+    private val allStoriesViewModel: AllStoriesViewModel by viewModels {
+        AllStoriesViewModelFactory(this)
+    }
     private lateinit var mMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val callback = OnMapReadyCallback { googleMap ->
@@ -59,7 +62,7 @@ class LocationActivity : BaseActivity<ActivityLocationBinding>() {
 
     override fun setup(savedInstanceState: Bundle?) {
         initMap()
-        initViewModel()
+//        initViewModel()
         getAllStories()
         getResponse()
     }
@@ -70,10 +73,10 @@ class LocationActivity : BaseActivity<ActivityLocationBinding>() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
-    private fun initViewModel() {
-        allStoriesViewModel =
-            ViewModelProvider(this, AllStoriesViewModelFactory())[AllStoriesViewModel::class.java]
-    }
+//    private fun initViewModel() {
+//        allStoriesViewModel =
+//            ViewModelProvider(this, AllStoriesViewModelFactory())[AllStoriesViewModel::class.java]
+//    }
 
     override fun statusBarColor(): Int = 0
 

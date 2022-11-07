@@ -3,7 +3,7 @@ package com.nrahmatd.storyapp.home.view.fragment
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nrahmatd.storyapp.databinding.FragmentHomeBinding
 import com.nrahmatd.storyapp.home.adapter.HomeAdapter
@@ -17,12 +17,10 @@ import io.reactivex.disposables.CompositeDisposable
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    private lateinit var allStoriesViewModel: AllStoriesViewModel
-    private lateinit var homeAdapter: HomeAdapter
-
-    companion object {
-        const val ALL_STORIES = 1
+    private val allStoriesViewModel: AllStoriesViewModel by viewModels {
+        AllStoriesViewModelFactory(requireActivity())
     }
+    private lateinit var homeAdapter: HomeAdapter
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -32,7 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun setup() {
         setupSwipeRefresh()
         setupRecyclerView()
-        initViewModel()
+//        initViewModel()
         getAllStories()
         initNotify()
         initOnClick()
@@ -52,10 +50,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun initViewModel() {
-        allStoriesViewModel =
-            ViewModelProvider(this, AllStoriesViewModelFactory())[AllStoriesViewModel::class.java]
-    }
+//    private fun initViewModel() {
+//        allStoriesViewModel =
+//            ViewModelProvider(this, AllStoriesViewModelFactory())[AllStoriesViewModel::class.java]
+//    }
 
     private fun getAllStories() {
         allStoriesViewModel.responsePaging.observe(this) {

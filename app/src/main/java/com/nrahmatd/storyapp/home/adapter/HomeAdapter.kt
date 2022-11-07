@@ -19,7 +19,7 @@ class HomeAdapter :
     PagingDataAdapter<AllStoriesModel.Story, HomeAdapter.StoriesHolder>(DIFF_CALLBACK) {
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<AllStoriesModel.Story>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<AllStoriesModel.Story>() {
             override fun areItemsTheSame(
                 oldItem: AllStoriesModel.Story,
                 newItem: AllStoriesModel.Story

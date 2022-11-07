@@ -1,13 +1,14 @@
 package com.nrahmatd.storyapp.createstories.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
-import com.nrahmatd.storyapp.network.ApiRepository
+import com.nrahmatd.storyapp.di.Injection
 
-class CreateStoriesViewModelFactory : ViewModelProvider.Factory {
+class CreateStoriesViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
         @Suppress("UNCHECKED_CAST")
-        return CreateStoriesViewModel(ApiRepository()) as T
+        return CreateStoriesViewModel(Injection.provideRepository(context)) as T
     }
 }

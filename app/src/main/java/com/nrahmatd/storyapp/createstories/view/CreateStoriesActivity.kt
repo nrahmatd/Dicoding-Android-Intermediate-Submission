@@ -15,10 +15,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.exifinterface.media.ExifInterface
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -58,7 +58,9 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
     private var getFile: File? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    private lateinit var createStoriesViewModel: CreateStoriesViewModel
+    private val createStoriesViewModel: CreateStoriesViewModel by viewModels {
+        CreateStoriesViewModelFactory(this)
+    }
 
     companion object {
         const val CREATE_STORIES = 1
@@ -69,7 +71,7 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
 
     override fun setup(savedInstanceState: Bundle?) {
         initView()
-        initViewModel()
+//        initViewModel()
         initOnClick()
         getResponse()
     }
@@ -98,12 +100,12 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
         }
     }
 
-    private fun initViewModel() {
-        createStoriesViewModel = ViewModelProvider(
-            this,
-            CreateStoriesViewModelFactory()
-        )[CreateStoriesViewModel::class.java]
-    }
+//    private fun initViewModel() {
+//        createStoriesViewModel = ViewModelProvider(
+//            this,
+//            CreateStoriesViewModelFactory()
+//        )[CreateStoriesViewModel::class.java]
+//    }
 
     private fun initOnClick() {
         binding.apply {

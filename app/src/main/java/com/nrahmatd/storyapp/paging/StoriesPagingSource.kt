@@ -21,7 +21,8 @@ class StoriesPagingSource(private val apiRepository: ApiRepository) : PagingSour
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, AllStoriesModel.Story> {
         return try {
             val position = params.key ?: INITIAL_PAGE_INDEX
-            val responseData = apiRepository.getAllStories(position, params.loadSize)
+            val responseData = apiRepository.getAllStories()
+//            val responseData = apiRepository.getAllStories(position, params.loadSize)
 
             LoadResult.Page(
                 data = responseData.body()?.listStory ?: emptyList(),

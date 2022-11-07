@@ -1,20 +1,20 @@
 package com.nrahmatd.storyapp.network
 
-import com.nrahmatd.storyapp.app.GlobalApp
+import androidx.lifecycle.LiveData
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
+import com.nrahmatd.storyapp.database.local.StoriesDatabase
 import com.nrahmatd.storyapp.database.sharedpref.PreferenceManager
-import com.nrahmatd.storyapp.network.interceptor.NetworkConnectionInterceptor
-import com.nrahmatd.storyapp.network.retrofit.RetrofitHelper
+import com.nrahmatd.storyapp.home.model.AllStoriesModel
+import com.nrahmatd.storyapp.paging.StoriesRemoteMediator
 import com.nrahmatd.storyapp.utils.GlobalVariable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 
-class ApiRepository {
-    private var apiServices: ApiServices =
-        RetrofitHelper.invoke(
-            Api.BASE_URL,
-            NetworkConnectionInterceptor(GlobalApp.getAppContext()),
-            false
-        ).create(ApiServices::class.java)
+class ApiRepository(private val database: StoriesDatabase, private val apiServices: ApiServices) {
 
     private val accessToken =
         "Bearer ".plus(PreferenceManager.instance.getString(GlobalVariable.ACCESS_TOKEN, ""))
@@ -28,8 +28,22 @@ class ApiRepository {
     suspend fun getAllStories() =
         apiServices.getAllStories(accessToken, null, null, 1)
 
-    suspend fun getAllStories(page: Int, size: Int) =
+    suspend fun getAllStoriesPaging(page: Int, size: Int) =
         apiServices.getAllStories(accessToken, page, size, 1)
+
+    fun getAllStoriesPaging(): LiveData<PagingData<AllStoriesModel.Story>> {
+        @OptIn(ExperimentalPagingApi::class)
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            remoteMediator = StoriesRemoteMediator(database, apiServices),
+            pagingSourceFactory = {
+                database.storiesDao().getAllQuote()
+//                StoriesPagingSource(repository)
+            }
+        ).liveData
+    }
 
     suspend fun createStories(
         file: MultipartBody.Part,

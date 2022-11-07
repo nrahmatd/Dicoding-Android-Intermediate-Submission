@@ -7,13 +7,15 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.nrahmatd.storyapp.database.local.RemoteKeys
 import com.nrahmatd.storyapp.database.local.StoriesDatabase
+import com.nrahmatd.storyapp.database.sharedpref.PreferenceManager
 import com.nrahmatd.storyapp.home.model.AllStoriesModel
-import com.nrahmatd.storyapp.network.ApiRepository
+import com.nrahmatd.storyapp.network.ApiServices
+import com.nrahmatd.storyapp.utils.GlobalVariable
 
 @OptIn(ExperimentalPagingApi::class)
 class StoriesRemoteMediator(
     private val database: StoriesDatabase,
-    private val apiRepository: ApiRepository
+    private val apiServices: ApiServices
 ) : RemoteMediator<Int, AllStoriesModel.Story>() {
 
     companion object {
@@ -50,7 +52,14 @@ class StoriesRemoteMediator(
         }
 
         try {
-            val responseData = apiRepository.getAllStories(page = page, state.config.pageSize)
+            val accessToken =
+                "Bearer ".plus(PreferenceManager.instance.getString(GlobalVariable.ACCESS_TOKEN, ""))
+            val responseData = apiServices.getAllStories(
+                token = accessToken,
+                page = page,
+                size = state.config.pageSize,
+                location = 1
+            )
 
             val endPaginationReached = responseData.body()?.listStory?.isEmpty() ?: false
 
