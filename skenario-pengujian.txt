@@ -1,0 +1,9 @@
+Unit Test
+AllStoriesViewModelTest
+Memastikan data tidak null.
+Memastikan jumlah data sesuai dengan yang diharapkan.
+
+
+QuoteRemoteMediatorTest 
+Memastikan fungsi load mengembalikan RemoteMediator.MediatorResult.Success.
+Memastikan jumlah endOfPaginationReached bernilai false.

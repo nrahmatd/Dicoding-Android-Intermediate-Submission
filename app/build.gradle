@@ -97,7 +97,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     testImplementation "androidx.arch.core:core-testing:2.1.0" // InstantTaskExecutorRule
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1" // main coroutine rule
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1" // TestDispatcher (main coroutine rule)
 
     /** IdlingResource */
     implementation 'androidx.test.espresso:espresso-idling-resource:3.4.0'
