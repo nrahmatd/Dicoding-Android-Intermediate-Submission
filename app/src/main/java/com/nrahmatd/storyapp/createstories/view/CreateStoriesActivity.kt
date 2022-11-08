@@ -259,7 +259,7 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            // Location permission granted
+            /** Location permission granted */
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
                     this.currentLocation = location
@@ -278,7 +278,9 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
                 }
             }
         } else {
-            // Location permission denied
+            /**
+             * Location permission denied
+             * */
             requestPermissionLauncher.launch(
                 arrayOf(
                     Manifest.permission.ACCESS_COARSE_LOCATION
