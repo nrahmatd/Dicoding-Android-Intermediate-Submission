@@ -1,9 +1,36 @@
-Unit Test
+@Unit Test
 AllStoriesViewModelTest
 Memastikan data tidak null.
 Memastikan jumlah data sesuai dengan yang diharapkan.
 
-
 QuoteRemoteMediatorTest 
 Memastikan fungsi load mengembalikan RemoteMediator.MediatorResult.Success.
 Memastikan jumlah endOfPaginationReached bernilai false.
+
+AuthViewModelTest
+Memastikan berhasil register user.
+Memastikan berhasil login user.
+
+CreateStoriesViewModelTest
+Memastikan berhasil menambahkan story.
+
+@MediumTest
+HomeFragmentTest
+Berhasil Membuka Halaman Home Fragment
+Memastikan bahwa recyclerview tampil di layar
+Memastikan bahwa terdapat teks “Ahmad” pada layar
+
+@LargeTest
+MainActivityTest
+Diasumsikan bahwa pengguna telah login
+Memastikan MainActivity telah terbuka
+Memastikan RecyclerView telah tampil pada layar
+Melakukan aksi klik pada item pertama di RecyclerView
+Memastikan bahwa DetailStoryActivity telah terbuka
+Memastikan bahwa terdapat sebuah extra yang dibawa dari MainActivity
+Melakukan aksi scroll ke bawah
+Memastikan gambar cerita telah tampil
+Memastikan nama pengirim telah tampil
+Memastikan tanggal cerita telah tampil
+Memastikan deskripsi cerita telah tampil
+Kembali ke MainActivity

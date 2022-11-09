@@ -1,0 +1,15 @@
+{
+  "error": false,
+  "message": "Stories fetched successfully",
+  "listStory": [
+    {
+      "id": "story-FvU4u0Vp2S3PMsFg",
+      "name": "Andi Jalal",
+      "description": "Lorem Ipsum",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1641623658595_dummy-pic.png",
+      "createdAt": "2022-06-08T06:34:08.598Z",
+      "lat": -12.212,
+      "lon": -30.002
+    }
+  ]
+}

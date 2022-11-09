@@ -46,7 +46,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), EmailEditText.OnEdit
 
     override fun setup() {
         initView()
-//        initViewModel()
         initOnClick()
         getResponse()
     }
@@ -83,10 +82,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(), EmailEditText.OnEdit
             }
         }
     }
-
-//    private fun initViewModel() {
-//        authViewModel = ViewModelProvider(this, AuthViewModelFactory())[AuthViewModel::class.java]
-//    }
 
     private fun initOnClick() {
         binding.apply {

@@ -45,7 +45,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(),
 
     override fun setup() {
         initView()
-//        initViewModel()
         initOnClick()
         getResponse()
     }
@@ -96,10 +95,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>(),
             }
         }
     }
-
-//    private fun initViewModel() {
-//        authViewModel = ViewModelProvider(this, AuthViewModelFactory())[AuthViewModel::class.java]
-//    }
 
     private fun initOnClick() {
         binding.apply {

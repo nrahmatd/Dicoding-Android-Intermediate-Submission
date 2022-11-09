@@ -30,7 +30,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun setup() {
         setupSwipeRefresh()
         setupRecyclerView()
-//        initViewModel()
         getAllStories()
         initNotify()
         initOnClick()
@@ -49,11 +48,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             layoutManager = LinearLayoutManager(requireActivity())
         }
     }
-
-//    private fun initViewModel() {
-//        allStoriesViewModel =
-//            ViewModelProvider(this, AllStoriesViewModelFactory())[AllStoriesViewModel::class.java]
-//    }
 
     private fun getAllStories() {
         allStoriesViewModel.responsePaging.observe(this) {

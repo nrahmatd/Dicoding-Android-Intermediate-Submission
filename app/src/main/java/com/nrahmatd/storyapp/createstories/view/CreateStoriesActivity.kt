@@ -71,7 +71,6 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
 
     override fun setup(savedInstanceState: Bundle?) {
         initView()
-//        initViewModel()
         initOnClick()
         getResponse()
     }
@@ -99,13 +98,6 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
             })
         }
     }
-
-//    private fun initViewModel() {
-//        createStoriesViewModel = ViewModelProvider(
-//            this,
-//            CreateStoriesViewModelFactory()
-//        )[CreateStoriesViewModel::class.java]
-//    }
 
     private fun initOnClick() {
         binding.apply {

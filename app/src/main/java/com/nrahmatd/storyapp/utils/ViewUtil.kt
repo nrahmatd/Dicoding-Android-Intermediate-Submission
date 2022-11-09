@@ -9,6 +9,7 @@ import android.view.ViewOutlineProvider
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import androidx.test.core.app.ApplicationProvider
 import androidx.transition.Fade
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
@@ -27,6 +28,7 @@ import com.nrahmatd.storyapp.thirdparty.notify.Notify
 import com.nrahmatd.storyapp.thirdparty.notify.NotifyProvider
 import com.nrahmatd.storyapp.utils.general_model.GeneralModel
 import io.reactivex.disposables.CompositeDisposable
+import java.io.InputStreamReader
 import java.lang.reflect.Type
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -178,4 +180,20 @@ fun getNotify(
             log(GlobalVariable.NOTIFY_ERROR, it.message!!)
         })
     )
+}
+
+fun readStringFromFile(filename: String): String {
+    try {
+        val applicationContext = ApplicationProvider.getApplicationContext<Context>()
+        val inputStream = applicationContext.assets.open(filename)
+        val builder = StringBuilder()
+        val reader = InputStreamReader(inputStream, "UTF-8")
+        reader.readLines().forEach {
+            builder.append(it)
+        }
+
+        return builder.toString()
+    } catch (e: Exception) {
+        throw e
+    }
 }
