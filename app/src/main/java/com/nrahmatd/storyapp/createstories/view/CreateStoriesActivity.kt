@@ -292,9 +292,9 @@ class CreateStoriesActivity : BaseActivity<ActivityCreateStoriesBinding>() {
             )
             val description =
                 etDescription.text.toString().toRequestBody("text/plain".toMediaType())
-            val latitude =
+            val latitude = if (currentLocation == null) null else
                 currentLocation?.latitude.toString().toRequestBody("text/plain".toMediaType())
-            val longitude =
+            val longitude = if (currentLocation == null) null else
                 currentLocation?.longitude.toString().toRequestBody("text/plain".toMediaType())
 
             createStoriesViewModel.createStories(

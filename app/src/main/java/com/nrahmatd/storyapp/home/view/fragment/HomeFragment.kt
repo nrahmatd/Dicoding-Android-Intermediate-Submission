@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun setupSwipeRefresh() {
         binding.swipeHome.setOnRefreshListener {
-            getAllStories()
+            refresh()
         }
     }
 
@@ -58,9 +58,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun initNotify() {
         getNotify(compositeDisposable) {
             when (it.TAG) {
-                GlobalVariable.NOTIFY_STORIES -> getAllStories()
+                GlobalVariable.NOTIFY_STORIES -> refresh()
             }
         }
+    }
+
+    private fun refresh() {
+        homeAdapter.refresh()
+        binding.swipeHome.isRefreshing = false
     }
 
     private fun initOnClick() {

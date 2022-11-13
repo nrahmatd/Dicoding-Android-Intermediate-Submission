@@ -1,7 +1,9 @@
 @Unit Test
 AllStoriesViewModelTest
 Memastikan data tidak null.
-Memastikan jumlah data sesuai dengan yang diharapkan.
+Memastikan bahwa actualData(dari differ.snapshot()) sama dengan dummyStory.
+Memastikan jumlah data dari actualData(differ.snapshot().size) sesuai dengan dummyStory.size.
+Memastikan nama data index-1 dari actualData(differ.snapshot()[0]?.name) sama dengan nama data index-1 dari dummyStory(dummyStory[0].name).
 
 QuoteRemoteMediatorTest 
 Memastikan fungsi load mengembalikan RemoteMediator.MediatorResult.Success.
