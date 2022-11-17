@@ -52,14 +52,14 @@ class AuthViewModelTest {
                 password = password
             )
 
-            val actualCreateStories = authViewModel.response.getOrAwaitValue()
+            val actualRegister = authViewModel.response.getOrAwaitValue()
 
             Mockito.verify(apiRepository).register(
                 name = name,
                 email = email,
                 password = password
             )
-            Assert.assertNotNull(actualCreateStories)
+            Assert.assertNotNull(actualRegister)
         } finally {
             authViewModel.response.removeObserver(observer)
         }
@@ -76,13 +76,13 @@ class AuthViewModelTest {
                 password = password
             )
 
-            val actualCreateStories = authViewModel.response.getOrAwaitValue()
+            val actualLogin = authViewModel.response.getOrAwaitValue()
 
             Mockito.verify(apiRepository).login(
                 email = email,
                 password = password
             )
-            Assert.assertNotNull(actualCreateStories)
+            Assert.assertNotNull(actualLogin)
         } finally {
             authViewModel.response.removeObserver(observer)
         }
