@@ -4,6 +4,7 @@ Submission 1 Criteria
 - Must be have List Story Page
 - Must be have Add Story Page
 - Must be Use Animation
+
 Submission 2 Criteria
 - Retaining Features from Submission 1
 - Must be have page for showing Maps
