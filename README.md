@@ -1,4 +1,4 @@
-# Dicoding: Android Intermediate Submission 
+# [Dicoding: Android Intermediate Submission ](https://www.dicoding.com/academies/352)
 Submission 1 Criteria
 - Must be have Authentication Page
 - Must be have List Story Page
